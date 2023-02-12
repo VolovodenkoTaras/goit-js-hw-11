@@ -17,6 +17,19 @@ let searchQuery = '';
 let pageNumber = 1;
 let totalHits = '';
 
+window.onscroll = () => changeFormBackground();
+
+function changeFormBackground() {
+    const formOffsetTrigger = refs.searchFormRef.offsetTop;
+    const pageOffset = window.pageYOffset;
+
+    if (pageOffset > formOffsetTrigger) {
+        refs.searchFormRef.classList.add('no-transparency');
+    } else {
+        refs.searchFormRef.classList.remove('no-transparency');
+    }
+}
+
 refs.searchFormRef.addEventListener('submit', onSearch);
 
 async function onSearch(event) {
@@ -49,8 +62,6 @@ async function onSearch(event) {
         })
         .catch(error => console.log(error));
 }
-
-export { onSearch, searchQuery };
 
 const options = {
     root: null,

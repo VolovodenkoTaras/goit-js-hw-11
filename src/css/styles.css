@@ -40,8 +40,9 @@ input[type='text'] {
   background-color: #314588;
 }
 
-#search-form.page-is-scrolled {
-  opacity: 0.8;
+#search-form.no-transparency {
+  background-color: rgba(49, 69, 136, 0.5);
+  backdrop-filter: blur(3px);
 }
 
 .search-panel {
