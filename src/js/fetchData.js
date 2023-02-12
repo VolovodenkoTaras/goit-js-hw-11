@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const BASE_URL = 'https://pixabay.com/api/';
-const PRIVATE_KEY = '29610060-546b0d52217012a7fbe24491a';
+const PRIVATE_KEY = '33585244-9b6eb40017d90c14cfbcb005c';
 export const PER_PAGE = 40;
 
 const searchParams = new URLSearchParams({
