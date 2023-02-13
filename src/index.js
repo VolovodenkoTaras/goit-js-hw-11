@@ -38,7 +38,7 @@ async function onSearch(event) {
     observer.unobserve(refs.guardRef);
     searchQuery = event.currentTarget.searchQuery.value.trim();
     refs.galleryRef.innerHTML = '';
-    event.currentTarget.reset();
+    // event.currentTarget.reset();
 
     if (!searchQuery) {
         refs.galleryRef.innerHTML = '';
@@ -109,7 +109,7 @@ const optionsBottom = {
     rootMargin: '1px',
     threshold: 1.0,
 };
-// Observer message
+
 const observerBottom = new IntersectionObserver(
     OnBottomMessage,
     optionsBottom
