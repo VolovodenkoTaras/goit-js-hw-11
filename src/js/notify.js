@@ -14,15 +14,18 @@ export const notifyFailureMessage = () => {
     );
 };
 
-export const notifySuccessMessage = totalHits => {
-    return Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`, {
-        opacity: 0.8,
-        position: 'right-top',
-        timeout: 300,
-        cssAnimationDuration: 1500,
-        backOverlayColor: 'rgba(255,85,73,0.2)',
-        cssAnimationStyle: 'zoom',
-    });
+export const notifySuccessMessage = (gallery) => {
+    return Notiflix.Notify.success(
+        `Hooray! We found: ${gallery.data.total} images,
+       available for display: ${gallery.data.totalHits} images.`
+        , {
+            opacity: 0.8,
+            position: 'right-top',
+            timeout: 300,
+            cssAnimationDuration: 1500,
+            backOverlayColor: 'rgba(255,85,73,0.2)',
+            cssAnimationStyle: 'zoom',
+        });
 };
 
 export const notifyInfoMessage = () => {

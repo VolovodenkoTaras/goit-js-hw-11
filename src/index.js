@@ -53,12 +53,15 @@ async function onSearch(event) {
             if (!totalHits) {
                 return notifyFailureMessage();
             }
-            notifySuccessMessage(totalHits);
+            notifySuccessMessage(gallery);
             addMarkup(gallery.data.hits);
 
             simpleGallery.refresh();
 
-            observer.observe(refs.guardRef);
+            if (gallery.data.hits.length >= PER_PAGE) {
+                observer.observe(refs.guardRef);
+            }
+
         })
         .catch(error => console.log(error));
 }
@@ -88,18 +91,21 @@ async function onLoad(entries, observer) {
             fetchPhotoApi(searchQuery, pageNumber)
                 .then(gallery => {
                     addMarkup(gallery.data.hits);
+
                     simpleGallery.refresh();
+
                     smoothImagesScroll()
+
+                    if (pageNumber === Math.ceil(totalHits / PER_PAGE)) {
+                        observer.unobserve(refs.guardRef);
+                        observerBottom.observe(refs.guardRef);
+                        pageNumber = 1;
+                    }
                 })
                 .catch(error => {
                     console.error(error);
                 });
 
-            if (pageNumber === Math.round(totalHits / PER_PAGE)) {
-                observer.unobserve(refs.guardRef);
-                observerBottom.observe(refs.guardRef);
-                pageNumber = 1;
-            }
         }
     });
 }
